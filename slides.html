@@ -42,8 +42,8 @@
                 const data = window.localStorage.getItem('content');
 
                 if (!data) {
-					title.innerHTML = `✋ Failed To Load`
-					alert('✋ Sorry, could not find proper container for slideshow, slides will not load.')
+					document.querySelector('title').innerHTML = `✋ Failed To Load`
+					alert('✋ Sorry, could not find data for slideshow, slides will not load. (Maybe type some stuff first?)')
 					return;
                 }
                 
