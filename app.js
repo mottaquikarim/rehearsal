@@ -3,6 +3,14 @@
         autofocus: true,
     });
 
+    const initialVal = window.localStorage.getItem('content');
+    if (initialVal) {
+        simplemde.value(initialVal)
+    }
+    else {
+        window.localStorage.setItem('content', document.querySelector('textarea').value);
+    }
+
     const par = document.querySelector('iframe').parentNode
     let timeout = null;
     simplemde.codemirror.on("change", () => {
@@ -19,8 +27,4 @@
         par.innerHTML = `<iframe src="${e.data}"></iframe>`;
     }, false)
 
-    const initialVal = window.localStorage.getItem('content');
-    if (initialVal) {
-        simplemde.value(initialVal)
-    }
 })()
