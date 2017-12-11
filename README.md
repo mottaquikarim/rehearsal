@@ -1,5 +1,7 @@
 # Rehearsal: RevealJS Slideshow Preview
 
+🎉🎈🎂🍾🎊🍻💃
+
 Markdown editor that allows you to preview revealjs slideshows as you go. Super simple; copy and paste markdown to whereever needed once done.
 
 ## Features
