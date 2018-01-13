@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/mottaquikarim/rehearsal.svg?branch=master)](https://travis-ci.org/mottaquikarim/rehearsal)
+
 # Rehearsal: RevealJS Slideshow Preview
 
 🎉🎈🎂🍾🎊🍻💃
