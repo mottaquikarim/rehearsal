@@ -4,8 +4,7 @@
 
 *🎉🎈🎂🍾🎊🍻💃*
 
-
-*RevealJS Slideshow Preview*
+*RevealJS Slideshow Preview.*
 
 [![scrnshot](https://github.com/mottaquikarim/remotecontrol/blob/master/assets/rehearsal-scrnshot.png?raw=true)](https://mottaquikarim.github.io/rehearsal/)
 
@@ -30,3 +29,5 @@ Markdown editor that allows you to preview revealjs slideshows as you assemble y
 PRs welcome! Please follow guidelines **[here](https://github.com/mottaquikarim/remotecontrol/blob/master/CONTRIBUTE.md)**.
 
 ## [DEPLOYED APP](https://mottaquikarim.github.io/rehearsal/)
+
+*This project is a **[remotecontrol](https://github.com/mottaquikarim/remotecontrol)** service.*
