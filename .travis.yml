@@ -3,6 +3,7 @@ node_js:
   - "node"
   - "8"
 install:
+  - cd app/
   - npm install
 script:
   - npm test
