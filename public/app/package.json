@@ -4,6 +4,7 @@
   "description": "preview markdown based revealjs slideshow; export at any time",
   "main": "index.js",
   "scripts": {
+    "write-coveralls": "rm .coveralls.yml && echo \"repo_token:$COVERAGE_TOKEN\" >> .coveralls.yml",
     "test": "$(npm bin)/nyc $(npm bin)/ava && $(npm bin)/nyc report --reporter=text-lcov | $(npm bin)/coveralls",
     "test-ava": "$(npm bin)/ava",
     "build": "$(npm bin)/webpack src/app.js ../js/bundle.js"
