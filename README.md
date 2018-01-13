@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/mottaquikarim/rehearsal.svg?branch=master)](https://travis-ci.org/mottaquikarim/rehearsal)
+[![Build Status](https://travis-ci.org/mottaquikarim/rehearsal.svg?branch=master)](https://travis-ci.org/mottaquikarim/rehearsal) [![Coverage Status](https://coveralls.io/repos/github/mottaquikarim/rehearsal/badge.svg?branch=master)](https://coveralls.io/github/mottaquikarim/rehearsal?branch=master)
 
 # [REHEARSAL](https://mottaquikarim.github.io/rehearsal/)
 
