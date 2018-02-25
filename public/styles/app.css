@@ -115,3 +115,8 @@ iframe {
     padding: 0 15px;
     padding-top: 5px;
 }
+
+.reveal section.stack > section {
+    overflow-y: auto !important;
+    height: 800px;
+}
