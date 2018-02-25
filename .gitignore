@@ -1,4 +1,2 @@
 node_modules/*
-.coveralls.*
-coverage/*
-.nyc_output
+.DS_Store

@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+	<head>
+        <title>🙌 Rehearsal 🙌</title>
+
+    	<link href="https://fonts.googleapis.com/css?family=Roboto:400,900" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsoneditor/5.11.0/jsoneditor.min.css">
+        <link rel="stylesheet" href="styles/app.css">
+    </head>
+    <body class="js-index">
+        <header class="header">
+            REHEARSAL //
+            <span class="header-thin">
+                Preview and deploy revealjs slides
+            </span>
+            <span class="header-controls">
+                <a class="js-export header-button">EXPORT</a>
+            </span>
+        </header>
+        <section class="half hidden js-json-editor half--code">
+            <div class="json-header-custom">
+                test 
+            </div>
+            <div class="js-json-container half-container"></div>
+        </section>
+        <section class="half js-md-editor half--code">
+            <textarea>
+# Hello, Wrold!
+
+This is an example slide.
+
+---
+
+You can add new slides with the `---` notation.
+
+---
+
+This is also another slide!
+
+-
+
+Vertical slides are supported too. Just add `\n-\n` 
+
+(A `-` with a newline above and below it)
+
+---
+
+Main purpose is to help plan lectures and other talks that make use of markdown and RevealJS.
+
+---
+
+Happy revealing!
+
+🎉🎈🎂🍾🎊🍻💃
+            
+            
+            </textarea>
+        </section>
+        <section class="half right">
+            <iframe src="slides.html"></iframe>
+        </section>
+        <section class="footer">
+            Built by your boy Taq Karim with
+            <a href="https://github.com/sparksuite/simplemde-markdown-editor" target="_blank">SimpleMDE</a>,
+            <a href="https://github.com/hakimel/reveal.js" target="_blank">RevealJS</a>,
+            <a href="http://myjson.com/api" target="_blank">MyJSON API</a>,
+            <a href="https://open.spotify.com/user/spotify/playlist/37i9dQZF1E9LT8MBqE2iTe" target="_blank">this Spotify playlist</a>,
+            and ❤️
+        </section>
+
+        <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+        <script src="js/bundle.js"></script>
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jsoneditor/5.11.0/jsoneditor.min.js" defer></script> -->
+	</body>
+</html>

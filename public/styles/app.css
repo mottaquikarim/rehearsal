@@ -1,0 +1,122 @@
+html, body {
+    position: fixed;
+    top: 50px;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 100px);
+    box-sizing: border-box;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+.header, .footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    box-sizing: border-box;
+    border: 2px solid black;
+    border-bottom: 0;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    padding-top: 10px;
+    background-color: black;
+    color: white;
+}
+
+.header {
+    top: 0;
+    bottom: initial;
+    text-align: left;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+    padding-top: 15px;
+    padding: 15px;
+}
+
+.header-thin {
+    font-weight: 400;
+    font-size: 12px;
+    text-transform: lowercase;
+    position: relative;
+    top: -1px;
+}
+
+.header-controls {
+    text-align: right;
+    position: absolute;
+    right: 15px;
+    font-weight: 400;
+}
+
+.header-button {
+    cursor: pointer;
+    font-weight: 900;
+}
+
+.header-button:hover {
+    color: green;
+}
+
+.footer a {
+    color: white;
+}
+
+.half {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    box-sizing: border-box;
+    border: 2px solid black;
+    border-top: 0;
+}
+
+.half.right {
+    left: 50%;
+}
+
+.half.hidden {
+    display: none;
+}
+
+.half-container {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.CodeMirror {
+    height: calc(100% - 123px);
+    font-family: 'Roboto', sans-serif;
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.jsoneditor-menu {
+    display: none !important;
+}
+
+.json-header-custom {
+    height: 35px;
+    width: 100%;
+    background-color: black;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+    padding: 0 15px;
+    padding-top: 5px;
+}
+
+.reveal section.stack > section {
+    overflow-y: auto !important;
+    height: 800px;
+}
