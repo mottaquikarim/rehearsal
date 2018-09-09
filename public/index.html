@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 	<head>
-        <title>✏️✏️✏️✏️</title>
+        <title>🙌 Rehearsal 🙌</title>
 
     	<link href="https://fonts.googleapis.com/css?family=Roboto:400,900" rel="stylesheet">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
@@ -10,11 +10,9 @@
     </head>
     <body class="js-index">
         <header class="header">
-            COMPOSER //
+            REHEARSAL //
             <span class="header-thin">
-                Preview and deploy markdown
-            </span>
-            <span class="header-thin js-status">
+                Preview and deploy revealjs slides
             </span>
             <span class="header-controls">
                 <a class="js-export header-button">EXPORT</a>
@@ -30,49 +28,44 @@
             <textarea>
 # Hello, Wrold!
 
-This is a **super** simple Markdown editor. Write markdown here, see it show up on the right side. The main purpose is to help plan lectures and other content.
-
-
-## Features
-Here are the key features of this app.
-
-### Markdown + Editor
-Markdown is the syntax used to generate content. Here is a handy **[cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)**.
-
-Additionally, the handy **[SimpleMDE](https://github.com/sparksuite/simplemde-markdown-editor)** project allows for easy RTE capabilities, including common keyboard shortcuts and a formatting toolbar. 
-
-
-### Local persistance
-Type something here and refresh...
-
-You'll note that your content will persist. All data is saved into **localstorage** so as long as your browser session is intact, your data will be intact.
-
-### Non-Local persistance
-
-See that handy **EXPORT** button on the top right? Use that to push existing content to the  **[myjson api](http://myjson.com/api)**. 
-
-**IMPORTANT NOTE**: You will have to hit that button every time you want to update your locally persisted changes! 
-
-Upon "**exporting**", the page will reload with a **source** value in the URL - either bookmark the page *or* save that source id - it is the key to reaccess your changes at a future date.
-
-### Joint Scrolling
-
-If you have a lot of content, scrolling down on the left pane will automatically trigger a scroll on the right pane. Super useful!
+This is an example slide.
 
 ---
 
-Happy composing!
+You can add new slides with the `---` notation.
+
+---
+
+This is also another slide!
+
+-
+
+Vertical slides are supported too. Just add `\n-\n` 
+
+(A `-` with a newline above and below it)
+
+---
+
+Main purpose is to help plan lectures and other talks that make use of markdown and RevealJS.
+
+---
+
+Happy revealing!
 
 🎉🎈🎂🍾🎊🍻💃
+            
+            
             </textarea>
         </section>
-        <section class="half right js-content content">
+        <section class="half right">
+            <iframe src="slides.html"></iframe>
         </section>
         <section class="footer">
             Built by your boy Taq Karim with
             <a href="https://github.com/sparksuite/simplemde-markdown-editor" target="_blank">SimpleMDE</a>,
+            <a href="https://github.com/hakimel/reveal.js" target="_blank">RevealJS</a>,
             <a href="http://myjson.com/api" target="_blank">MyJSON API</a>,
-            <a href="https://open.spotify.com/artist/0C0XlULifJtAgn6ZNCW2eu" target="_blank">the Killers on Spotify</a>,
+            <a href="https://open.spotify.com/user/spotify/playlist/37i9dQZF1E9LT8MBqE2iTe" target="_blank">this Spotify playlist</a>,
             and ❤️
         </section>
 

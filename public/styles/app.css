@@ -1,9 +1,9 @@
 html, body {
     position: fixed;
-    top: 30px;
+    top: 50px;
     left: 0;
     width: 100%;
-    height: calc(100% - 60px);
+    height: calc(100% - 100px);
     box-sizing: border-box;
     overflow: hidden;
     margin: 0;
@@ -15,14 +15,14 @@ html, body {
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 30px;
+    height: 50px;
     box-sizing: border-box;
-    border: 2px solid #343d46;
+    border: 2px solid black;
     border-bottom: 0;
     text-align: center;
     font-family: 'Roboto', sans-serif;
     padding-top: 10px;
-    background-color: #343d46;
+    background-color: black;
     color: white;
 }
 
@@ -32,13 +32,8 @@ html, body {
     text-align: left;
     font-family: 'Roboto', sans-serif;
     font-weight: 900;
-    padding-top: 5px;
-    padding: 5px;
-}
-
-.footer {
-    padding-top: 0;
-    font-size: 12px;
+    padding-top: 15px;
+    padding: 15px;
 }
 
 .header-thin {
@@ -76,7 +71,7 @@ html, body {
     width: 50%;
     height: 100%;
     box-sizing: border-box;
-    border: 2px solid #343d46;
+    border: 2px solid black;
     border-top: 0;
 }
 
@@ -113,56 +108,10 @@ iframe {
 .json-header-custom {
     height: 35px;
     width: 100%;
-    background-color: #343d46;
+    background-color: black;
     color: white;
     font-family: 'Roboto', sans-serif;
     box-sizing: border-box;
     padding: 0 15px;
     padding-top: 5px;
-}
-
-.content {
-    font-family: 'Roboto', sans-serif; 
-    padding: 20px;
-    overflow: scroll;
-    font-size: 18px;
-    line-height: 28px;
-}
-.content h1,
-.content h2,
-.content h3,
-.content h4,
-.content h5,
-.content h6 {
-    margin: 0 0 20px 0;
-    font-weight: 900;
-    font-family: 'Roboto', sans-serif;
-}
-
-.content h1 {
-    font-size: 48px;
-}
-
-.content h2 {
-    font-size: 38px;
-}
-
-.content h3 {
-    font-size: 28px;
-}
-
-.content h4 {
-    font-size: 24px;
-}
-
-.content h5 {
-    font-size: 20px;
-}
-
-.content h6 {
-    font-size: 18px;
-}
-
-.content li * {
-    margin: 0;
 }
