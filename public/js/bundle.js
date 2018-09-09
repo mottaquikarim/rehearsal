@@ -123,18 +123,24 @@ function initIndex() {
     });
 
     const initialVal = window.localStorage.getItem('content');
-    const hashdict = Object(__WEBPACK_IMPORTED_MODULE_0__utils__["b" /* getHashDict */])();
-    const sauce = hashdict['source'];
+    const sauce = window.location.hash.slice(1);
 
-    Object(__WEBPACK_IMPORTED_MODULE_0__utils__["f" /* setSauce */])(sauce, simplemde);
-    Object(__WEBPACK_IMPORTED_MODULE_0__utils__["e" /* setInitial */])(initialVal, simplemde);
+    Object(__WEBPACK_IMPORTED_MODULE_0__utils__["d" /* setSauce */])(sauce, simplemde);
+    Object(__WEBPACK_IMPORTED_MODULE_0__utils__["c" /* setInitial */])(initialVal, simplemde);
 
-    const par = document.querySelector('iframe').parentNode
-    Object(__WEBPACK_IMPORTED_MODULE_0__utils__["d" /* setCMChange */])(simplemde, par);
-    Object(__WEBPACK_IMPORTED_MODULE_0__utils__["a" /* addMessageListener */])(par);
+    const par = document.querySelector('.js-content')
+    Object(__WEBPACK_IMPORTED_MODULE_0__utils__["b" /* setCMChange */])(simplemde, par);
 
     const exportBtn = document.querySelector('.js-export')
-    exportBtn.addEventListener('click', __WEBPACK_IMPORTED_MODULE_0__utils__["c" /* onExport */])
+    exportBtn.addEventListener('click', __WEBPACK_IMPORTED_MODULE_0__utils__["a" /* onExport */])
+
+    const loadBtn = document.querySelector('.header-controls')
+    loadBtn.addEventListener('click', e => {
+        if (e.target.matches('.js-load')) {
+            simplemde.value(window.localStorage.getItem('content_old'))
+            e.target.remove();
+        }
+    })
 }
 
 
@@ -147,13 +153,12 @@ function initIndex() {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (immutable) */ __webpack_exports__["b"] = getHashDict;
-/* harmony export (immutable) */ __webpack_exports__["f"] = setSauce;
-/* harmony export (immutable) */ __webpack_exports__["e"] = setInitial;
+/* unused harmony export getHashDict */
+/* harmony export (immutable) */ __webpack_exports__["d"] = setSauce;
+/* harmony export (immutable) */ __webpack_exports__["c"] = setInitial;
 /* unused harmony export ajax */
-/* harmony export (immutable) */ __webpack_exports__["d"] = setCMChange;
-/* harmony export (immutable) */ __webpack_exports__["a"] = addMessageListener;
-/* harmony export (immutable) */ __webpack_exports__["c"] = onExport;
+/* harmony export (immutable) */ __webpack_exports__["b"] = setCMChange;
+/* harmony export (immutable) */ __webpack_exports__["a"] = onExport;
 function getHashDict() {
     const hashstr = window.location.search.substr(1);
     const hasharr = hashstr.split('&')
@@ -178,6 +183,15 @@ function setSauce(sauce = null, simplemde = null) {
                 title.innerHTML = `✋ Failed To Load`
                 alert('✋ Sorry, could not load data, defaulting to localstorage');
                 return;
+            }
+            const oldC = window.localStorage.getItem('content')
+            if (oldC && oldC !== d) {
+                window.localStorage.setItem('content_old', oldC)
+                const newNode = document.createElement('a');
+                newNode.classList.add('js-load', 'header-button')
+                newNode.innerHTML = "LOAD LOCAL CHANGES";
+                newNode.style.color = 'red';
+                document.querySelector('.header-controls').appendChild(newNode)
             }
             simplemde.value(d)
         })
@@ -208,23 +222,109 @@ function setCMChange(simplemde = null, par = null) {
     if (!par) return
 
     let timeout = null;
-    simplemde.codemirror.on("change", () => {
+    let scrollTimeout = null;
+    let animationFrame = null;
+
+    const _onChange = () => {
         const val = simplemde.value()
         window.localStorage.setItem('content', val);
         clearTimeout(timeout)
         timeout = window.setTimeout(() => {
-            par.querySelector('iframe').contentWindow.postMessage("new_content", "*");
+            par.innerHTML = simplemde.options.previewRender(val);
+           const span = document.querySelector('.js-status')
+           span.innerHTML = "// Successfully saved to localStorage";
         }, 1000);
-    });
-}
+    }
 
-function addMessageListener(par = null) {
-    if (!par) return;
+    const easeInOutQuad =  (t, b, c, d) => {
+        t /= d/2;
+        if (t < 1) return c/2*t*t + b;
+        t--;
+        return -c/2 * (t*(t-2) - 1) + b;
+    } 
 
-    window.addEventListener('message', (e) => {
-        par.innerHTML = '';
-        par.innerHTML = `<iframe src="${e.data}"></iframe>`;
-    }, false)
+    const defaultFn = (element, currentTime, start, change, duration, fn) => {
+        element.scrollTop = fn(currentTime, start, change, duration);
+    }
+
+    const scrollTo = (element, to, duration, doneCb = null, cb = defaultFn)  => {
+        var start = element.scrollTop,
+            change = to - start,
+            currentTime = 0,
+            increment = 20;
+            
+        const animateScroll = function(){        
+            currentTime += increment;
+            cb(element, currentTime, start, change, duration, easeInOutQuad)
+            if(currentTime < duration) {
+                animationFrame = requestAnimationFrame(animateScroll, increment);
+            }
+            else {
+                setTimeout(doneCb, 500);
+            }
+        };
+
+        animateScroll();
+    }
+
+    simplemde.codemirror.on("change", _onChange)
+    _onChange();
+
+    let cmDisabled = false;
+    let contDisabled = false;
+
+    simplemde.codemirror.on("scroll", e => {
+        if (cmDisabled) return;
+        contDisabled = true;
+
+        cancelAnimationFrame(animationFrame)
+        clearTimeout(scrollTimeout)
+
+        scrollTimeout = window.setTimeout(() => {
+
+            const {doc} = e;
+            const {cm, scrollTop} = doc;
+            const {lastWrapHeight} = cm.display;
+            const perc = scrollTop/lastWrapHeight;
+            const ogHeight = Math.floor(par.getBoundingClientRect().height)
+            console.log(Math.floor(ogHeight * perc), perc, lastWrapHeight, scrollTop, doc)
+            scrollTo(par, Math.floor(ogHeight * perc), 500, () => {
+                contDisabled = false; 
+            })
+
+        }, 500);
+    })
+
+    /*
+    par.addEventListener("scroll", e => {
+
+        if (contDisabled) return;
+        cmDisabled = true;
+
+        cancelAnimationFrame(animationFrame)
+        clearTimeout(scrollTimeout)
+
+        scrollTimeout = window.setTimeout(() => {
+            const {target} = e;
+            const scrollTop = target.scrollTop;
+            const height = target.getBoundingClientRect().height;
+            const perc = scrollTop / height;
+            
+            scrollTo(
+                par,
+                Math.floor(simplemde.codemirror.getScrollInfo().height * perc),
+                500, 
+                () => {
+                    cmDisabled = false; 
+                },
+                (element, currentTime, start, change, duration, fn) => {
+                    simplemde.codemirror.scrollTo(null, fn(currentTime, start, change, duration))
+                }
+            );
+
+        }, 500)
+    })
+    */
 }
 
 function onExport(e) {
@@ -253,7 +353,15 @@ function onExport(e) {
             window.localStorage.getItem('jsonId');
 
        window.localStorage.setItem('jsonId', token);
-       window.location.href = 'stage.html?source='+token;
+       window.location.hash = token;
+
+       const span = document.querySelector('.js-status')
+       span.innerHTML = "// Successfully saved to " + 
+        "<a style='color: red;' href='" +
+            window.location.href +
+            "' target='blank'>" + 
+                token + 
+        "</a>";
     })
 }
 
