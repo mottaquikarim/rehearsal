@@ -14,24 +14,18 @@ export default function initIndex() {
     });
 
     const initialVal = window.localStorage.getItem('content');
-    const sauce = window.location.hash.slice(1);
+    const hashdict = getHashDict();
+    const sauce = hashdict['source'];
 
     setSauce(sauce, simplemde);
     setInitial(initialVal, simplemde);
 
-    const par = document.querySelector('.js-content')
+    const par = document.querySelector('iframe').parentNode
     setCMChange(simplemde, par);
+    addMessageListener(par);
 
     const exportBtn = document.querySelector('.js-export')
     exportBtn.addEventListener('click', onExport)
-
-    const loadBtn = document.querySelector('.header-controls')
-    loadBtn.addEventListener('click', e => {
-        if (e.target.matches('.js-load')) {
-            simplemde.value(window.localStorage.getItem('content_old'))
-            e.target.remove();
-        }
-    })
 }
 
 
